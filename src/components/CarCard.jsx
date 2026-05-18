@@ -1,0 +1,110 @@
+// import { Button, Card } from '@heroui/react';
+// import Image from 'next/image';
+// import React from 'react';
+
+// const CarCard = ({ car }) => {
+//     const { carName, imageUrl, availabilityStatus, seatCapacity, dailyRentPrice } = car;
+//     return (
+//         <div>
+//             <Card>
+
+//                 <Image alt={carName} src={imageUrl} width={300} height={200}>
+
+//                 </Image>
+
+//                 <p>{carName}</p>
+
+//                 <p>{seatCapacity}</p>
+//                 <p>{dailyRentPrice}</p>
+//                 <p>{availabilityStatus}</p>
+
+//                 <Button > Book Now</Button>
+//             </Card>
+
+
+//         </div>
+//     );
+// };
+
+// export default CarCard;
+
+import { Button, Card, Chip } from '@heroui/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import { FaUsers, FaDollarSign } from 'react-icons/fa';
+
+const CarCard = ({ car }) => {
+    const { _id, carName, imageUrl, availabilityStatus, seatCapacity, dailyRentPrice } = car;
+
+    const getStatusColor = () => {
+        switch (availabilityStatus?.toLowerCase()) {
+            case 'available': return 'success';
+            case 'booked': return 'danger';
+            case 'maintenance': return 'warning';
+            default: return 'default';
+        }
+    };
+
+    return (
+        <div className="group">
+            <Card className="overflow-hidden bg-white dark:bg-gray-900 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 max-w-sm mx-auto border border-gray-100 dark:border-gray-800">
+                {/* Image Container */}
+                <div className="relative overflow-hidden h-52 bg-gray-100 dark:bg-gray-800">
+                    <Image
+                        alt={carName}
+                        src={imageUrl || '/placeholder.jpg'}
+                        width={400}
+                        height={250}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+
+                    {/* Price Tag */}
+                    <div className="absolute top-3 right-3 bg-white dark:bg-gray-900 text-gray-900 dark:text-white px-3 py-1.5 rounded-md font-semibold shadow-md">
+                        <div className="flex items-center gap-0.5">
+                            <FaDollarSign size={14} className="text-gray-600 dark:text-gray-400" />
+                            <span className="text-lg">{dailyRentPrice}</span>
+                            <span className="text-xs text-gray-500 dark:text-gray-400">/day</span>
+                        </div>
+                    </div>
+
+                    {/* Status Badge */}
+                    <div className="absolute top-3 left-3">
+                        <Chip
+                            color={getStatusColor()}
+                            variant="flat"
+                            className="capitalize font-medium"
+                            size="sm"
+                        >
+                            {availabilityStatus}
+                        </Chip>
+                    </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-5">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                        {carName}
+                    </h3>
+
+                    <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        <div className="flex items-center gap-1.5">
+                            <FaUsers size={14} />
+                            <span>{seatCapacity} seats</span>
+                        </div>
+                    </div>
+
+                    <Link href={`/explore-cars/${_id}`}>  <Button
+                        className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                        size="lg"
+                        variant="solid"
+                    >
+                        Book Now
+                    </Button> </Link>
+                </div>
+            </Card>
+        </div>
+    );
+};
+
+export default CarCard;
