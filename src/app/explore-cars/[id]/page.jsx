@@ -2,6 +2,9 @@ import Image from "next/image";
 import { FaCarSide, FaMapMarkerAlt, FaUsers, FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
 import { Button } from "@heroui/react";
+import { BiEdit } from "react-icons/bi";
+import EditCarDetailsModal from "@/components/EditCarDetailsModal";
+import { DeleteAlert } from "@/components/DeleteAlert";
 
 const CarDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -47,6 +50,13 @@ const CarDetailsPage = async ({ params }) => {
     return (
         <div className="min-h-screen bg-zinc-50">
             {/* Back Navigation */}
+
+            <div className="flex gap-3 justify-end items-center">
+                <DeleteAlert car={car} />
+
+                <EditCarDetailsModal car={car} />
+            </div>
+
             <div className="max-w-6xl mx-auto px-6 pt-8">
                 <Link
                     href="/explore-cars"

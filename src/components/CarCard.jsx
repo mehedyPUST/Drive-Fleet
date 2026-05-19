@@ -48,14 +48,15 @@ const CarCard = ({ car }) => {
 
     return (
         <div className="group">
-            <Card className="overflow-hidden bg-white dark:bg-gray-900 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 max-w-sm mx-auto border border-gray-100 dark:border-gray-800">
+            <Card className='p-6 shadow-2xl rounded-xl' >
                 {/* Image Container */}
                 <div className="relative overflow-hidden h-52 bg-gray-100 dark:bg-gray-800">
                     <Image
                         alt={carName}
-                        src={imageUrl || '/placeholder.jpg'}
-                        width={400}
-                        height={250}
+                        src={imageUrl}
+                        width={350}
+                        height={300}
+                        loading="eager"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
 
@@ -95,12 +96,12 @@ const CarCard = ({ car }) => {
                     </div>
 
                     <Link href={`/explore-cars/${_id}`}>  <Button
-                        className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                        className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors rounded-sm"
                         size="lg"
                         variant="solid"
                     >
                         Book Now
-                    </Button> </Link>
+                    </Button > </Link>
                 </div>
             </Card>
         </div>

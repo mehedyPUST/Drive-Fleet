@@ -8,8 +8,8 @@ const ExploreCarsPage = async () => {
     console.log(cars)
 
     return (
-        <div>
-            <h2 >Available Cars</h2>
+        <div className='w-11/12 mx-auto'>
+            <h2 className='text-3xl font-bold mt-5 mb-3 ' >Available Cars: <span className='text-green-500'>{cars.length}</span> </h2>
 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {
