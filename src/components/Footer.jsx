@@ -65,7 +65,7 @@ const Footer = () => {
     return (
         <footer className="w-full bg-gradient-to-br from-gray-950 via-gray-900 to-black border-t border-gray-800">
             {/* Main Content - Full Width Background */}
-            <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-8">
+            <div className=" w-11/12 mx-auto px-5 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
 
                     {/* Brand + Info */}
