@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { FaCarSide, FaMapMarkerAlt, FaUsers, FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
@@ -5,6 +6,7 @@ import { Button } from "@heroui/react";
 import { BiEdit } from "react-icons/bi";
 import EditCarDetailsModal from "@/components/EditCarDetailsModal";
 import { DeleteAlert } from "@/components/DeleteAlert";
+import BookingActionCard from "@/components/BookingActionCard";
 
 const CarDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -141,16 +143,11 @@ const CarDetailsPage = async ({ params }) => {
                             </p>
                         </div>
 
+                        <BookingActionCard car={car}></BookingActionCard>
+
+
                         {/* Book Button */}
-                        <Button
-                            className="w-full bg-zinc-900 hover:bg-black text-white rounded-2xl py-7 text-base font-semibold transition-all active:scale-[0.985]"
-                            size="lg"
-                            isDisabled={car.availabilityStatus !== "Available"}
-                        >
-                            {car.availabilityStatus === "Available"
-                                ? "Book This Car"
-                                : "Currently Unavailable"}
-                        </Button>
+
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@
 
 
 // import { BookingCancelAlert } from "@/components/BookingCancelAlert";
-import { BookingCancelAlert } from "@/components/BookingCancelAlert";
+// import { BookingCancelAlert } from "@/components/BookingCancelAlert";
 import { auth } from "@/lib/auth";
 import { TrashBin } from "@gravity-ui/icons";
 import { Button } from "@heroui/react";
@@ -41,30 +41,24 @@ const MyBookingsPage = async () => {
                 {bookings.map((booking) => (
                     <div key={booking._id} className="flex gap-5 border p-5 min-w-3xl">
                         <Image
-                            src={booking.imageUrl}
-                            alt={booking.destinationName}
+                            src={booking.carImage}
+                            alt={booking.carName}
                             height={200}
                             width={200}
                         />
                         <div>
-                            <h1 className="font-bold text-2xl">{booking.destinationName}</h1>
-                            <p>
-                                {new Date(booking.departureDate).toLocaleDateString("en-US", {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                })}
-                            </p>
+                            <h1 className="font-bold text-2xl">{booking.carName}</h1>
+
 
                             <p>Booking Id: {booking._id}</p>
 
                             <p className="text-3xl font-bold text-cyan-500">
-                                ${booking.price}
+                                ${booking.rentalPrice}
                             </p>
 
                             {/* <BookingCancelAlert bookingId={booking._id} /> */}
 
-                            <BookingCancelAlert bookingId={booking._id} />
+                            {/* <BookingCancelAlert bookingId={booking._id} /> */}
 
                         </div>
                     </div>
