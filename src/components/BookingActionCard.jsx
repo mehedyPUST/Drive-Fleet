@@ -26,17 +26,21 @@ const BookingActionCard = ({ car }) => {
             carId: car._id,
             carImage: car.imageUrl,
             carName: car.carName,
-            imageUrl: car.imageUrl,   // ✅ ADD THIS
+            imageUrl: car.imageUrl,
             rentalPrice: car.dailyRentPrice,
             needDriver,
             specialNote
         };
 
-        // console.log("Booking Data:", bookingData);
-        const res = await fetch('http://localhost:5000/booking', {
+
+        const { data: tokenData } = await authClient.token()
+        console.log(tokenData)
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(bookingData)
         })

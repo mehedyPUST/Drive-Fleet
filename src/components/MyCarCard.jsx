@@ -1,5 +1,3 @@
-
-
 import { Button, Card, Chip } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,8 +5,8 @@ import React from 'react';
 import { FaUsers, FaDollarSign } from 'react-icons/fa';
 import { TbListDetails } from 'react-icons/tb';
 
-const CarCard = ({ car }) => {
-    const { _id, carName, imageUrl, availabilityStatus, seatCapacity, dailyRentPrice } = car;
+const MyCarCard = ({ myCar }) => {
+    const { _id, carName, imageUrl, availabilityStatus, seatCapacity, dailyRentPrice } = myCar;
 
     const getStatusColor = () => {
         switch (availabilityStatus?.toLowerCase()) {
@@ -81,4 +79,4 @@ const CarCard = ({ car }) => {
     );
 };
 
-export default CarCard;
+export default MyCarCard;

@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Button, FieldError, Input, Label, Modal, Surface, TextField, Select, ListBox, TextArea } from "@heroui/react";
 import { BiEdit } from "react-icons/bi";
 
@@ -13,10 +14,13 @@ const EditCarDetailsModal = ({ car }) => {
         const car = Object.fromEntries(formData.entries())
         console.log(car)
 
-        const res = await fetch(`http://localhost:5000/car/${_id}`, {
+
+        const { data: tokenData } = await authClient.token()
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car/${_id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(car)
         })
@@ -149,7 +153,7 @@ const EditCarDetailsModal = ({ car }) => {
                                         </TextField>
 
                                         {/* Pickup location */}
-                                        <TextField name="pickUpLocation" isRequired defaultValue={pickupLocation}>
+                                        <TextField name="pickupLocation" isRequired defaultValue={pickupLocation}>
                                             <Label className="text-gray-700 dark:text-gray-300 font-medium">Pick-Up Location</Label>
                                             <Input
                                                 placeholder="e.g., Downtown Hub, Airport"
@@ -174,7 +178,7 @@ const EditCarDetailsModal = ({ car }) => {
                                     </div>
 
                                     {/* Availability Status */}
-                                    <div>
+                                    {/* <div>
                                         <TextField name="availabilityStatus" type="text" isRequired defaultValue={availabilityStatus}>
                                             <Label className="text-gray-700 dark:text-gray-300 font-medium">Availability Status</Label>
                                             <Input
@@ -185,6 +189,48 @@ const EditCarDetailsModal = ({ car }) => {
                                             />
                                             <FieldError />
                                         </TextField>
+                                    </div> */}
+
+
+                                    <div>
+                                        <Select
+                                            name="availabilityStatus"
+                                            isRequired
+                                            className="w-full"
+                                            placeholder="Select Availability Status"
+                                            defaultSelectedKeys={availabilityStatus}
+                                        >
+                                            <Label className="text-gray-700 dark:text-gray-300 font-medium">Availability Status</Label>
+                                            <Select.Trigger className="rounded-xl">
+                                                <Select.Value />
+                                                <Select.Indicator />
+                                            </Select.Trigger>
+                                            <Select.Popover>
+                                                <ListBox>
+                                                    <ListBox.Item id="Available" textValue="Available">
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                                                            Available
+                                                        </div>
+                                                        <ListBox.ItemIndicator />
+                                                    </ListBox.Item>
+                                                    <ListBox.Item id="Maintenance" textValue="Maintenance">
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                                                            Maintenance
+                                                        </div>
+                                                        <ListBox.ItemIndicator />
+                                                    </ListBox.Item>
+                                                    <ListBox.Item id="Booked" textValue="Booked">
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                                                            Booked
+                                                        </div>
+                                                        <ListBox.ItemIndicator />
+                                                    </ListBox.Item>
+                                                </ListBox>
+                                            </Select.Popover>
+                                        </Select>
                                     </div>
 
                                     {/* Buttons */}
@@ -208,3 +254,7 @@ const EditCarDetailsModal = ({ car }) => {
 };
 
 export default EditCarDetailsModal;
+
+
+
+

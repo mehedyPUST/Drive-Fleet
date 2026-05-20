@@ -79,7 +79,7 @@ export default function SignInPage() {
                     </h1>
 
                     <p className="text-gray-500 text-sm mt-2">
-                        Access your account and continue shopping
+                        Access your account and enjoy your  Drive Fleet
                     </p>
                 </div>
 

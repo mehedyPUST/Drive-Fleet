@@ -1,23 +1,8 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { BookingCancelAlert } from "@/components/BookingCancelAlert";
-// import { BookingCancelAlert } from "@/components/BookingCancelAlert";
+import { BookingCancelAlert } from "@/components/BookingCancelAlert";
 import { auth } from "@/lib/auth";
 import { TrashBin } from "@gravity-ui/icons";
-import { Button } from "@heroui/react";
+import { Button, ButtonGroup } from "@heroui/react";
 import { headers } from "next/headers";
 import Image from "next/image";
 
@@ -26,17 +11,21 @@ const MyBookingsPage = async () => {
         headers: await headers(),
     });
 
-    // const { token } = await auth.api.getToken({
-    //     headers: await headers(),
-    // });
+    const { token } = await auth.api.getToken({
+        headers: await headers(),
+    });
 
     const user = session?.user;
-    const res = await fetch(`http://localhost:5000/booking/${user.id}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user.id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
     const bookings = await res.json();
 
     return (
         <div className="w-11/12 mx-auto">
-            <h1 className="text-3xl font-bold mb-5">My Bookings</h1>
+            <h1 className="text-3xl font-bold mb-5">My Bookings: {bookings.length}</h1>
             <div className="space-y-5">
                 {bookings.map((booking) => (
                     <div key={booking._id} className="flex gap-5 border p-5 min-w-3xl">
@@ -56,9 +45,10 @@ const MyBookingsPage = async () => {
                                 ${booking.rentalPrice}
                             </p>
 
-                            {/* <BookingCancelAlert bookingId={booking._id} /> */}
+                            <BookingCancelAlert bookingId={booking._id} />
 
                             {/* <BookingCancelAlert bookingId={booking._id} /> */}
+
 
                         </div>
                     </div>
@@ -70,53 +60,3 @@ const MyBookingsPage = async () => {
 
 export default MyBookingsPage;
 
-
-
-
-
-
-
-
-// import { auth } from '@/lib/auth';
-// import { headers } from 'next/headers';
-// import Image from 'next/image';
-// import React from 'react';
-
-// const MyBookingsPage = async () => {
-
-//     const session = await auth.api.getSession({
-//         headers: await headers() // you need to pass the headers object.
-//     })
-//     const user = session?.user
-
-
-//     const res = await fetch(`http://localhost:5000/booking/${user.id}`)
-//     const bookings = await res.json()
-//     console.log(bookings)
-
-//     return (
-//         <div className='w-11/12 mx-auto'>
-//             <h1 className='text-3xl font-bold'>My bookings</h1>
-
-
-//             <div>
-//                 {
-//                     bookings.map(booking => <div key={booking._id}>
-//                         <Image alt={booking.destinationName}
-//                             src={booking.imageUrl}
-//                             height={300}
-//                             width={300}
-//                         >
-
-//                         </Image>
-//                     </div>)
-//                 }
-//             </div>
-
-
-
-//         </div>
-//     );
-// };
-
-// export default MyBookingsPage;

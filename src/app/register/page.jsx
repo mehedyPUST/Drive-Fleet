@@ -15,34 +15,31 @@ import {
     TextField,
 } from "@heroui/react";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-
-
+import { GrGoogle } from "react-icons/gr";
 import { MdEmail, MdLock, MdPerson, MdImage } from "react-icons/md";
-import { FcGoogle } from "react-icons/fc";
 
-export default function RegisterPage() {
+export default function SignUpPage() {
     const router = useRouter()
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
-        const user = Object.fromEntries(formData.entries())
-        console.log(user)
+        const name = e.target.name.value;
+        const image = e.target.image.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
         const loadingToast = toast.loading("Creating your account...");
 
         try {
-            const { data, error } = await authClient.signUp.email({
-                email: user.email,
-                password: user.password,
-                name: user.name,
-                image: user.image
+            const { error } = await authClient.signUp.email({
+                name,
+                email,
+                password,
+                image,
             });
-
-            console.log({ data, error })
-
 
             if (error) {
                 toast.dismiss(loadingToast);
@@ -58,7 +55,7 @@ export default function RegisterPage() {
 
             toast.dismiss(loadingToast);
 
-            toast.success(" Account created successfully! Welcome to Drive Fleet.");
+            toast.success(" Account created successfully! Welcome to SunCart.");
 
             // small delay for better UX
             setTimeout(() => {
@@ -89,7 +86,7 @@ export default function RegisterPage() {
                 {/* Page Header */}
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-
+                        <span>📝</span>
                         <span>Join Us Today</span>
                     </div>
                     <h1 className="text-3xl md:text-4xl font-bold bg-linear-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent mb-4">
@@ -97,7 +94,7 @@ export default function RegisterPage() {
                     </h1>
                     <div className="w-24 h-1 bg-linear-to-r from-amber-600 to-orange-500 mx-auto rounded-full"></div>
                     <p className="text-gray-500 mt-4">
-                        Resister for exclusive deals and summer offers
+                        Sign up for exclusive deals and summer offers
                     </p>
                 </div>
 
@@ -125,7 +122,7 @@ export default function RegisterPage() {
                                     <div className="relative">
                                         <MdImage className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                                         <Input
-                                            placeholder="https://imgbb.com/avatar.jpg"
+                                            placeholder="https://example.com/avatar.jpg"
                                             className="pl-10 border-amber-100 focus:border-amber-400 w-full"
                                         />
                                     </div>
@@ -222,14 +219,14 @@ export default function RegisterPage() {
                                 onClick={handleGoogleSignIn}
                                 className="w-full border border-amber-200 bg-white text-gray-700 font-semibold hover:bg-amber-50 hover:border-amber-300 transition-all duration-300"
                             >
-                                <FcGoogle />
+                                <GrGoogle className="text-red-500" />
                                 Sign Up with Google
                             </Button>
 
                             {/* Sign In Link */}
                             <p className="text-center text-sm text-gray-600 mt-6">
                                 Already have an account?{' '}
-                                <Link href="/signin" className="text-amber-600 font-semibold hover:text-amber-700 hover:underline transition-colors">
+                                <Link href="/login" className="text-amber-600 font-semibold hover:text-amber-700 hover:underline transition-colors">
                                     Sign In
                                 </Link>
                             </p>

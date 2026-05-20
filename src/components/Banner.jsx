@@ -37,15 +37,18 @@ const Banner = () => {
 
                     {/* CTA Button */}
                     <div className="pt-4">
-                        <Button
-                            as={Link}
-                            href="/explore-cars"
-                            size="lg"
-                            className="bg-gradient-to-r from-green-500 to-amber-500 text-white font-semibold px-8 py-6 text-lg hover:from-green-600 hover:to-amber-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-                            endContent={<FaArrowRight className="group-hover:translate-x-1 transition-transform" />}
-                        >
-                            Explore Our Fleet
-                        </Button>
+                        <Link href="/explore-cars">
+                            <Button
+
+
+                                size="lg"
+                                className="bg-gradient-to-r from-green-500 to-amber-500 text-white font-semibold px-8 py-6 text-lg hover:from-green-600 hover:to-amber-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                                endContent={<FaArrowRight className="group-hover:translate-x-1 transition-transform" />}
+                            >
+                                Explore Cars
+                            </Button>
+
+                        </Link>
                     </div>
 
                     {/* Quick Info */}
