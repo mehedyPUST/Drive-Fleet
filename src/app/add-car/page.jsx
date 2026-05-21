@@ -39,7 +39,7 @@ const AddCarPage = () => {
         // console.log(carDataWithUser)
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/car`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
