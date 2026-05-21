@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚗 DriveFleet - Car Rental Platform
 
-## Getting Started
+DriveFleet is a full-stack car rental management application where users can browse available cars, book them, list their own cars for rent, and manage bookings. The platform provides secure authentication, real-time car status updates, and a responsive user interface.
 
-First, run the development server:
+## 🌐 Live Site URL
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Client Side (Frontend):** `https://drive-fleet-vzy1.vercel.app/`  
+**Server Side (Backend API):** `https://drive-fleet-server-oihu.vercel.app/`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*(Replace with your actual deployed URLs if different)*
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## ✨ Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **User Authentication & Authorization**  
+  Secure login/registration system using Next.js Auth. Users can only edit/delete their own listed cars and view their personal bookings.
 
-## Learn More
+- **Car Management (CRUD)**  
+  Authenticated users can add new cars with details (name, type, price, image, location, seating capacity), and edit or remove their own listings.
 
-To learn more about Next.js, take a look at the following resources:
+- **Booking System**  
+  Users can book available cars for specific dates. All bookings are stored with user IDs, rental price, and car details. Users can cancel their bookings if needed.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Dynamic Car Status**  
+  Cars have availability statuses: `Available`, `Booked`, or `Under Maintenance`. Status updates automatically when a car is booked.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Responsive & Modern UI**  
+  Fully responsive design built with Tailwind CSS, featuring gradient backgrounds, hover effects, mobile-friendly navigation (hamburger menu), and loading/empty states for better user experience.
 
-## Deploy on Vercel
+- **Real-Time Data Sync**  
+  MongoDB Atlas with `readPreference: 'primary'` ensures that newly added cars are immediately visible after insertion (solves replication lag issue on free tier).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Protected API Routes**  
+  All sensitive endpoints (add/edit/delete cars, bookings) are protected with JWT token verification.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Technology Stack
+
+### Frontend
+- **Next.js 14** (App Router)
+- **Tailwind CSS** (Styling)
+- **Next.js Auth** (Authentication)
+- **React Icons** (Icons)
+
+### Backend
+- **Node.js** + **Express.js**
+- **MongoDB Atlas** (Database)
+- **MongoDB Native Driver** (Database operations)
+- **JOSE** (JWT verification)
+- **CORS** (Cross-origin resource sharing)
+
+### Deployment
+- **Vercel** (Frontend & Backend hosting)
+
+## 📦 Installation & Setup (Local Development)
+
+### Prerequisites
+- Node.js (v18 or higher)
+- MongoDB Atlas account (or local MongoDB)
+
+### Backend Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/drive-fleet-server.git
+   cd drive-fleet-server
