@@ -37,7 +37,7 @@ DriveFleet is a full-stack car rental management application where users can bro
 ### Frontend
 - **Next.js 14** (App Router)
 - **Tailwind CSS** (Styling)
-- **Next.js Auth** (Authentication)
+- **Better-Auth** (Authentication)
 - **React Icons** (Icons)
 
 ### Backend
