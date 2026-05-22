@@ -6,7 +6,7 @@ import { BiEdit } from "react-icons/bi";
 
 const EditCarDetailsModal = ({ car }) => {
 
-    const { _id, availabilityStatus, description, pickupLocation, seatCapacity, imageUrl, carType, dailyRentPrice, carName } = car
+    const { _id, availabilityStatus, description, pickUpLocation, seatCapacity, imageUrl, carType, dailyRentPrice, carName } = car
 
     const onSubmit = async (e) => {
         e.preventDefault()
