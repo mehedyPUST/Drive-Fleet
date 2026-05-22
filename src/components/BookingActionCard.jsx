@@ -12,7 +12,7 @@ const BookingActionCard = ({ car }) => {
 
     const [needDriver, setNeedDriver] = useState('');
     const [specialNote, setSpecialNote] = useState('');
-     const [bookingDate, setBookingDate] = useState(null);
+    
 
     const bookingHandler = async () => {
         if (!user) {
@@ -82,18 +82,7 @@ const BookingActionCard = ({ car }) => {
                 </Select>
 
 
-                <div className="">
-                    <TextField name="description">
-                        <Label>Special Note </Label>
-                        <TextArea
-                            placeholder="Describe the travel experience..."
-                            className="rounded-sm"
-                            value={specialNote}
-                            onChange={(e) => setSpecialNote(e.target.value)}
-                        />
-                        <FieldError />
-                    </TextField>
-                </div>
+               
 
               <div>
               
