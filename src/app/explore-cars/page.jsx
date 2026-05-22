@@ -33,7 +33,7 @@ import CarCard from '@/components/CarCard';
 import React from 'react';
 
 const ExploreCarsPage = async () => {
-    const res = await fetch(`https://drive-fleet-server-oihu.vercel.app/cars`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars``, {
         cache: 'no-store',
     });
 
