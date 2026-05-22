@@ -154,38 +154,65 @@ const CarDetailsPage = async ({ params }) => {
                             <p className="text-xs sm:text-sm text-zinc-400 mt-2">+ taxes & fees</p>
                         </div>
 
-                        {/* Features Grid - Responsive */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-                            <div className="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                                <div className="p-2 sm:p-3 bg-emerald-50 rounded-lg">
-                                    <FaCarSide className="text-emerald-600 text-lg sm:text-xl" />
-                                </div>
-                                <div>
-                                    <p className="text-xs sm:text-sm text-zinc-500 font-medium">Car Type</p>
-                                    <p className="font-semibold text-zinc-900 text-sm sm:text-base">{car.carType}</p>
-                                </div>
-                            </div>
-                            
-                            <div className="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                                <div className="p-2 sm:p-3 bg-blue-50 rounded-lg">
-                                    <FaUsers className="text-blue-600 text-lg sm:text-xl" />
-                                </div>
-                                <div>
-                                    <p className="text-xs sm:text-sm text-zinc-500 font-medium">Seat Capacity</p>
-                                    <p className="font-semibold text-zinc-900 text-sm sm:text-base">{car.seatCapacity} Seats</p>
-                                </div>
-                            </div>
-                            
-                            <div className="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-                                <div className="p-2 sm:p-3 bg-amber-50 rounded-lg">
-                                    <FaMapMarkerAlt className="text-amber-600 text-lg sm:text-xl" />
-                                </div>
-                                <div>
-                                    <p className="text-xs sm:text-sm text-zinc-500 font-medium">Pickup Location</p>
-                                    <p className="font-semibold text-zinc-900 text-sm sm:text-base truncate">{car.pickUpLocation}</p>
-                                </div>
-                            </div>
-                        </div>
+                    {/* Features Grid - Responsive */}
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+
+    <div className="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div className="p-2 sm:p-3 bg-emerald-50 rounded-lg shrink-0">
+            <FaCarSide className="text-emerald-600 text-lg sm:text-xl" />
+        </div>
+
+        <div className="min-w-0">
+            <p className="text-xs sm:text-sm text-zinc-500 font-medium">
+                Car Type
+            </p>
+
+            <p className="font-semibold text-zinc-900 text-sm sm:text-base break-words">
+                {car.carType}
+            </p>
+        </div>
+    </div>
+
+    <div className="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div className="p-2 sm:p-3 bg-blue-50 rounded-lg shrink-0">
+            <FaUsers className="text-blue-600 text-lg sm:text-xl" />
+        </div>
+
+        <div className="min-w-0">
+            <p className="text-xs sm:text-sm text-zinc-500 font-medium">
+                Seat Capacity
+            </p>
+
+            <p className="font-semibold text-zinc-900 text-sm sm:text-base break-words">
+                {car.seatCapacity} Seats
+            </p>
+        </div>
+    </div>
+
+</div>
+
+{/* Pickup Location Card - Full Width */}
+<div className="p-4 sm:p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+    
+    <div className="flex items-start gap-3">
+        
+        <div className="p-2 sm:p-3 bg-amber-50 rounded-lg shrink-0">
+            <FaMapMarkerAlt className="text-amber-600 text-lg sm:text-xl" />
+        </div>
+
+        <div className="min-w-0 w-full">
+            <p className="text-xs sm:text-sm text-zinc-500 font-medium mb-1">
+                Pickup Location
+            </p>
+
+            <p className="font-semibold text-zinc-900 text-sm sm:text-base break-words whitespace-normal">
+                {car.pickUpLocation}
+            </p>
+        </div>
+
+    </div>
+
+</div>
 
                         {/* Description - Responsive */}
                         <div className="bg-white/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-5 sm:p-6">
