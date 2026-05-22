@@ -182,7 +182,7 @@ const CarDetailsPage = async ({ params }) => {
                                 </div>
                                 <div>
                                     <p className="text-xs sm:text-sm text-zinc-500 font-medium">Pickup Location</p>
-                                    <p className="font-semibold text-zinc-900 text-sm sm:text-base truncate">{car.pickupLocation}</p>
+                                    <p className="font-semibold text-zinc-900 text-sm sm:text-base truncate">{car.pickUpLocation}</p>
                                 </div>
                             </div>
                         </div>
