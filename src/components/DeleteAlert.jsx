@@ -24,9 +24,9 @@ export function DeleteAlert({ car }) {
     return (
         <AlertDialog>
              <AlertDialog.Trigger className="group flex items-center gap-2 rounded-xl bg-surface p-1 shadow-xs select-none hover:bg-surface-secondary">
-                <div className="flex size-6 shrink-0 items-center justify-center rounded-xl bg-danger-soft text-danger-soft-foreground">
-                    <TrashBin />
-                </div>
+                <Button variant="outline" className="rounded-xl bg-surface hover:bg-surface-secondary shadow-xs">
+                    <TrashBin /> Delete
+                </Button>
                 <div className="flex flex-1 flex-col gap-0.5">
                     <p className="text-sm font-semibold">Delete Item</p>
                     {/* <p className="text-xs text-muted">Permanently remove {carName}</p> */}
