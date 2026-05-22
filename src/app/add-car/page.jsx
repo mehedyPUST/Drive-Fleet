@@ -376,19 +376,42 @@ const AddCarPage = () => {
                             </TextField>
 
                             {/* Car Type */}
-                            <Select
-                                name="carType"
-                                isRequired
-                                className="w-full"
-                                placeholder="Select Type"
-                            >
+                            <Select name="carType" isRequired className="w-full" placeholder="Select Type">
                                 <Label className="text-gray-700 font-medium">Car Type</Label>
-                                <Select.Trigger className="rounded-xl" />
+                                <Select.Trigger className="rounded-xl">
+                                    <Select.Value />
+                                    <Select.Indicator />
+                                </Select.Trigger>
                                 <Select.Popover>
                                     <ListBox>
-                                        <ListBox.Item id="SUV">SUV</ListBox.Item>
-                                        <ListBox.Item id="Sedan">Sedan</ListBox.Item>
-                                        <ListBox.Item id="Luxury">Luxury</ListBox.Item>
+                                        <ListBox.Item id="SUV" textValue="SUV">
+                                            SUV
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+                                        <ListBox.Item id="Sedan" textValue="Sedan">
+                                            Sedan
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+                                        <ListBox.Item id="Hatchback" textValue="Hatchback">
+                                            Hatchback
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+                                        <ListBox.Item id="Luxury" textValue="Luxury">
+                                            Luxury
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+                                        <ListBox.Item id="Sports" textValue="Sports">
+                                            Sports
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+                                        <ListBox.Item id="Electric" textValue="Electric">
+                                            Electric
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+                                        <ListBox.Item id="Luxury SUV" textValue="Luxury SUV">
+                                            Luxury SUV
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
                                     </ListBox>
                                 </Select.Popover>
                             </Select>
@@ -430,24 +453,53 @@ const AddCarPage = () => {
 
                         </div>
 
-                        {/* Status */}
-                        <Select
-                            name="availabilityStatus"
-                            isRequired
-                            className="w-full"
-                            placeholder="Select Status"
-                            defaultSelectedKeys={["Available"]}
-                        >
-                            <Label className="text-gray-700 font-medium">Availability Status</Label>
-                            <Select.Trigger className="rounded-xl" />
-                            <Select.Popover>
-                                <ListBox>
-                                    <ListBox.Item id="Available">Available</ListBox.Item>
-                                    <ListBox.Item id="Maintenance">Maintenance</ListBox.Item>
-                                    <ListBox.Item id="Booked">Booked</ListBox.Item>
-                                </ListBox>
-                            </Select.Popover>
-                        </Select>
+                        {/* Availability Status - Dropdown */}
+                        <div>
+                            <Select
+                                name="availabilityStatus"
+                                isRequired
+                                className="w-full"
+                                placeholder="Select Availability Status"
+                                defaultSelectedKeys={["Available"]}
+                            >
+                                <Label className="text-gray-700 dark:text-gray-300 font-medium">
+                                    Availability Status
+                                </Label>
+
+                                <Select.Trigger className="rounded-xl">
+                                    <Select.Value />
+                                    <Select.Indicator />
+                                </Select.Trigger>
+
+                                <Select.Popover>
+                                    <ListBox>
+                                        <ListBox.Item id="Available" textValue="Available">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                                                Available
+                                            </div>
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+
+                                        <ListBox.Item id="Maintenance" textValue="Maintenance">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                                                Maintenance
+                                            </div>
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+
+                                        <ListBox.Item id="Booked" textValue="Booked">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                                                Booked
+                                            </div>
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
+                                    </ListBox>
+                                </Select.Popover>
+                            </Select>
+                        </div>
 
                         {/* Buttons */}
                         <div className="flex gap-4 pt-6">
