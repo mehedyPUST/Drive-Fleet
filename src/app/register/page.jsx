@@ -59,7 +59,7 @@ export default function SignUpPage() {
 
             // small delay for better UX
             setTimeout(() => {
-                router.push("/");
+                router.push("login");
             }, 1200);
 
         } catch (err) {
@@ -94,7 +94,7 @@ export default function SignUpPage() {
                     </h1>
                     <div className="w-24 h-1 bg-linear-to-r from-amber-600 to-orange-500 mx-auto rounded-full"></div>
                     <p className="text-gray-500 mt-4">
-                        Sign up for exclusive deals and summer offers
+                        Sign up for exclusive deals and offers
                     </p>
                 </div>
 
