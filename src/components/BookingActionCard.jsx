@@ -31,7 +31,6 @@ const BookingActionCard = ({ car }) => {
             rentalPrice: car.dailyRentPrice,
             needDriver,
             specialNote,
-            bookingDate: new Date(bookingDate)
         };
 
 
@@ -84,18 +83,7 @@ const BookingActionCard = ({ car }) => {
 
                
 
-              <div>
-              
-                <DateField onChange={setBookingDate} className="w-[256px]" name="date">
-        <Label>Booking Date</Label>
-        <DateField.Group>
-          <DateField.Input>
-            {(segment) => <DateField.Segment segment={segment} />}
-          </DateField.Input>
-        </DateField.Group>
-      </DateField>
-              
-              </div>
+          
 
 
                 <Button
