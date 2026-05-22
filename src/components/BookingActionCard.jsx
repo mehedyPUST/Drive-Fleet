@@ -112,20 +112,31 @@
 
 // export default BookingActionCard;
 
+"use client";
 
-'use client'
-import { useState } from 'react';
-import { authClient } from '@/lib/auth-client';
-import { Button, Card, FieldError, Label, ListBox, Select, TextArea, TextField, DatePicker } from '@heroui/react';
-import { parseDate } from '@internationalized/date';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
+import {
+    Button,
+    Card,
+    FieldError,
+    Label,
+    ListBox,
+    Select,
+    TextArea,
+    TextField,
+    DatePicker,
+} from "@heroui/react";
+
+import { parseDate, today } from "@internationalized/date";
+import toast from "react-hot-toast";
 
 const BookingActionCard = ({ car }) => {
     const { data: session } = authClient.useSession();
     const user = session?.user;
 
-    const [needDriver, setNeedDriver] = useState('');
-    const [specialNote, setSpecialNote] = useState('');
+    const [needDriver, setNeedDriver] = useState("");
+    const [specialNote, setSpecialNote] = useState("");
     const [pickupDate, setPickupDate] = useState(null);
     const [dropoffDate, setDropoffDate] = useState(null);
 
@@ -135,139 +146,158 @@ const BookingActionCard = ({ car }) => {
             return;
         }
 
-     
         if (!pickupDate || !dropoffDate) {
-            toast.error("Please select both pickup and dropoff dates!");
+            toast.error("Please select pickup and dropoff dates!");
             return;
         }
 
-       
-        const pickupDateTime = new Date(pickupDate.year, pickupDate.month - 1, pickupDate.day);
-        const dropoffDateTime = new Date(dropoffDate.year, dropoffDate.month - 1, dropoffDate.day);
-        const bookingDateTime = new Date();
+        try {
+            const pickupDateTime = pickupDate.toDate("UTC");
+            const dropoffDateTime = dropoffDate.toDate("UTC");
+            const bookingDateTime = new Date();
 
-        const bookingData = {
-            userId: user.id,
-            userImage: user.image,
-            userName: user.name,
-            carId: car._id,
-            carImage: car.imageUrl,
-            carName: car.carName,
-            imageUrl: car.imageUrl,
-            rentalPrice: car.dailyRentPrice,
-            needDriver,
-            specialNote,
-            pickupDate: pickupDateTime.toISOString(),
-            dropoffDate: dropoffDateTime.toISOString(),
-            bookingDate: bookingDateTime.toISOString()
-        };
+            const bookingData = {
+                userId: user.id,
+                userImage: user.image,
+                userName: user.name,
 
-        const { data: tokenData } = await authClient.token()
-        console.log(tokenData)
+                carId: car._id,
+                carImage: car.imageUrl,
+                carName: car.carName,
+                rentalPrice: car.dailyRentPrice,
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                authorization: `Bearer ${tokenData?.token}`
-            },
-            body: JSON.stringify(bookingData)
-        })
-        const data = await res.json();
-        console.log('booking er data ', data)
-        
-        if (res.ok) {
-            toast.success(`Booking ${car.carName} is successful! Welcome to Drive Fleet.`);
-            // বুকিং সফল হলে ফর্ম রিসেট করুন
+                needDriver,
+                specialNote,
+
+                pickupDate: pickupDateTime.toISOString(),
+                dropoffDate: dropoffDateTime.toISOString(),
+                bookingDate: bookingDateTime.toISOString(),
+            };
+
+            const { data: tokenData } = await authClient.token();
+
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_SERVER_URL}/booking`,
+                {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                        authorization: `Bearer ${tokenData?.token}`,
+                    },
+                    body: JSON.stringify(bookingData),
+                }
+            );
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data?.message || "Booking failed");
+            }
+
+            toast.success(`Booking ${car.carName} successful!`);
+
+            // reset
             setPickupDate(null);
             setDropoffDate(null);
-            setNeedDriver('');
-            setSpecialNote('');
-        } else {
-            toast.error("Booking failed! Please try again.");
+            setNeedDriver("");
+            setSpecialNote("");
+        } catch (err) {
+            toast.error(err.message || "Booking failed!");
         }
     };
 
     return (
         <div>
-            <Card className='rounded-none border p-5 space-y-4'>
-                <p className='text-gray-600 font-medium'>Book This Car at</p>
-                <p className='text-3xl sm:text-4xl text-green-500 font-bold'>$ {car.dailyRentPrice}</p>
-                <p className='text-gray-500 text-sm'>Per Day</p>
+            <Card className="rounded-none border p-5 space-y-4">
+                <p className="text-gray-600 font-medium">
+                    Book This Car at
+                </p>
 
-                {/* Pickup Date Picker */}
+                <p className="text-3xl font-bold text-green-500">
+                    $ {car.dailyRentPrice}
+                </p>
+
+                <p className="text-gray-500 text-sm">Per Day</p>
+
+                {/* Pickup Date */}
                 <div className="space-y-2">
-                    <Label className="text-sm font-medium">Pickup Date *</Label>
-                    <DatePicker 
+                    <Label>Pickup Date *</Label>
+
+                    <DatePicker
                         className="w-full"
                         value={pickupDate}
                         onChange={setPickupDate}
-                        minValue={parseDate(new Date().toISOString().split('T')[0])}
+                        minValue={today("UTC")}
                         isRequired
                     />
                 </div>
 
-                {/* Dropoff Date Picker */}
+                {/* Dropoff Date */}
                 <div className="space-y-2">
-                    <Label className="text-sm font-medium">Dropoff Date *</Label>
-                    <DatePicker 
+                    <Label>Dropoff Date *</Label>
+
+                    <DatePicker
                         className="w-full"
                         value={dropoffDate}
                         onChange={setDropoffDate}
-                        minValue={pickupDate ? parseDate(`${pickupDate.year}-${String(pickupDate.month).padStart(2, '0')}-${String(pickupDate.day).padStart(2, '0')}`) : parseDate(new Date().toISOString().split('T')[0])}
-                        isRequired
+                        minValue={pickupDate || today("UTC")}
                         isDisabled={!pickupDate}
+                        isRequired
                     />
                 </div>
 
-                {/* Need Driver Select */}
+                {/* Need Driver */}
                 <Select
-                    name="category"
-                    isRequired
                     className="w-full"
-                    placeholder="Select Your Option"
+                    placeholder="Need Driver?"
                     selectedKeys={needDriver ? [needDriver] : []}
-                    onSelectionChange={(keys) => setNeedDriver(Array.from(keys)[0])}
+                    onSelectionChange={(keys) =>
+                        setNeedDriver(Array.from(keys)[0])
+                    }
                 >
                     <Label>Need Driver</Label>
-                    <Select.Trigger className="rounded-sm">
+
+                    <Select.Trigger>
                         <Select.Value />
                         <Select.Indicator />
                     </Select.Trigger>
+
                     <Select.Popover>
-                        <ListBox className='rounded-sm'>
-                            <ListBox.Item key="Yes" textValue="Yes">Yes</ListBox.Item>
-                            <ListBox.Item key="No" textValue="No">No</ListBox.Item>
+                        <ListBox>
+                            <ListBox.Item key="Yes">Yes</ListBox.Item>
+                            <ListBox.Item key="No">No</ListBox.Item>
                         </ListBox>
                     </Select.Popover>
                 </Select>
 
                 {/* Special Note */}
-                <div className="">
-                    <TextField name="description">
-                        <Label>Special Note (Optional)</Label>
-                        <TextArea
-                            placeholder="Any special requests or instructions..."
-                            className="rounded-sm"
-                            value={specialNote}
-                            onChange={(e) => setSpecialNote(e.target.value)}
-                        />
-                        <FieldError />
-                    </TextField>
-                </div>
+                <TextField>
+                    <Label>Special Note (Optional)</Label>
 
-                {/* Booking Button */}
+                    <TextArea
+                        placeholder="Any special request..."
+                        value={specialNote}
+                        onChange={(e) => setSpecialNote(e.target.value)}
+                    />
+                    <FieldError />
+                </TextField>
+
+                {/* Button */}
                 <Button
                     onClick={bookingHandler}
-                    className="w-full bg-gradient-to-r from-green-600 to-amber-600 hover:from-green-700 hover:to-amber-700 text-white rounded-xl py-6 text-base font-semibold transition-all active:scale-[0.985] shadow-md"
-                    size="lg"
-                    isDisabled={car.availabilityStatus !== "Available" || !pickupDate || !dropoffDate}
+                    className="w-full bg-gradient-to-r from-green-600 to-amber-600 text-white font-semibold py-6"
+                    isDisabled={
+                        car.availabilityStatus !== "Available" ||
+                        !pickupDate ||
+                        !dropoffDate
+                    }
                 >
-                    {car.availabilityStatus === "Available"
-                        ? (pickupDate && dropoffDate ? "Book This Car" : "Select Dates to Book")
-                        : "Currently Unavailable"}
+                    {car.availabilityStatus !== "Available"
+                        ? "Unavailable"
+                        : pickupDate && dropoffDate
+                        ? "Book This Car"
+                        : "Select Dates First"}
                 </Button>
-
             </Card>
         </div>
     );
