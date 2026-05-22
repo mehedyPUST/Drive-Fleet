@@ -129,8 +129,6 @@
 // export default MyBookingsPage;
 
 
-
-
 import { BookingCancelAlert } from "@/components/BookingCancelAlert";
 import { auth } from "@/lib/auth";
 import { FaCalendarAlt, FaIdCard } from "react-icons/fa";
@@ -259,9 +257,11 @@ const MyBookingsPage = async () => {
                                                 <FaCalendarAlt className="text-green-500" />
                                                 <span>
                                                     Departure:{" "}
-                                                    {new Date(
-                                                        booking.departureDate
-                                                    ).toLocaleDateString()}
+                                                    {new Intl.DateTimeFormat("en-US", {
+                                                        year: "numeric",
+                                                        month: "long",
+                                                        day: "numeric",
+                                                    }).format(new Date(booking.departureDate))}
                                                 </span>
                                             </div>
                                         )}
@@ -272,9 +272,11 @@ const MyBookingsPage = async () => {
                                                 <FaCalendarAlt className="text-red-500" />
                                                 <span>
                                                     Dropping:{" "}
-                                                    {new Date(
-                                                        booking.droppingDate
-                                                    ).toLocaleDateString()}
+                                                    {new Intl.DateTimeFormat("en-US", {
+                                                        year: "numeric",
+                                                        month: "long",
+                                                        day: "numeric",
+                                                    }).format(new Date(booking.droppingDate))}
                                                 </span>
                                             </div>
                                         )}
