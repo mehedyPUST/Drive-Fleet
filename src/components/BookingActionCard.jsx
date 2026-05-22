@@ -95,6 +95,8 @@ const BookingActionCard = ({ car }) => {
                     </TextField>
                 </div>
 
+              <div>
+              
                 <DateField onChange={setBookingDate} className="w-[256px]" name="date">
         <Label>Booking Date</Label>
         <DateField.Group>
@@ -103,6 +105,8 @@ const BookingActionCard = ({ car }) => {
           </DateField.Input>
         </DateField.Group>
       </DateField>
+              
+              </div>
 
 
                 <Button
