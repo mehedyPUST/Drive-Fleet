@@ -153,7 +153,7 @@ const EditCarDetailsModal = ({ car }) => {
                                         </TextField>
 
                                         {/* Pickup location */}
-                                        <TextField name="pickupLocation" isRequired defaultValue={pickupLocation}>
+                                        <TextField name="pickUpLocation" isRequired defaultValue={pickUpLocation}>
                                             <Label className="text-gray-700 dark:text-gray-300 font-medium">Pick-Up Location</Label>
                                             <Input
                                                 placeholder="e.g., Downtown Hub, Airport"
