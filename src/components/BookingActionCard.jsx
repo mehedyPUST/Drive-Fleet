@@ -13,6 +13,7 @@ const BookingActionCard = ({ car }) => {
 
     const [needDriver, setNeedDriver] = useState('');
     const [specialNote, setSpecialNote] = useState('');
+     const [departureDate, setDepartureDate] = useState(null);
     
 
     const bookingHandler = async () => {
