@@ -18,7 +18,7 @@ export function DeleteAlert({ car }) {
             }
         });
 
-        redirect('/explore-cars');
+        redirect('/my-added-cars');
     }
 
     return (
