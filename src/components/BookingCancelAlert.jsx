@@ -37,9 +37,9 @@ export function BookingCancelAlert({ bookingId }) {
                         </AlertDialog.Header>
                         <AlertDialog.Body>
                             <p>
-                                Use <code>AlertDialog.Trigger</code> to create custom trigger elements beyond
-                                standard buttons. This example shows a card-style trigger with icons and descriptive
-                                text.
+                                Are you sure you want to cancel this booking?
+                                This action cannot be undone once confirmed.
+                                Please make sure before proceeding.
                             </p>
                         </AlertDialog.Body>
                         <AlertDialog.Footer>
