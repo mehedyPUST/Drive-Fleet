@@ -150,9 +150,7 @@ const MyBookingsPage = async () => {
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user.id}`,
         {
-            headers: {
-                authorization: `Bearer ${token}`
-            },
+            headers: { authorization: `Bearer ${token}` },
             cache: 'no-store'
         }
     );
@@ -161,18 +159,19 @@ const MyBookingsPage = async () => {
 
     if (!bookings || bookings.length === 0) {
         return (
-            <div className="min-h-[60vh] flex flex-col items-center justify-center px-4">
+            <div className="min-h-[60vh] flex items-center justify-center px-4 bg-gray-50">
                 <div className="text-center">
                     <div className="text-6xl mb-4">🚗</div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-700 mb-2">
+                    <h2 className="text-2xl font-bold text-black mb-2">
                         No Bookings Yet
                     </h2>
-                    <p className="text-gray-500 mb-6">
+                    <p className="text-gray-600 mb-6">
                         You haven't made any car bookings yet.
                     </p>
+
                     <Link
                         href="/explore-cars"
-                        className="inline-block px-6 py-3 bg-gradient-to-r from-green-500 to-amber-500 text-white rounded-lg hover:shadow-lg transition-all duration-300 font-medium"
+                        className="inline-block px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-900 transition"
                     >
                         Explore Cars
                     </Link>
@@ -182,79 +181,73 @@ const MyBookingsPage = async () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 sm:py-12">
+        <div className="min-h-screen bg-gray-50 py-10">
+
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header */}
-                <div className="mb-8 sm:mb-12">
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 flex items-center gap-3">
-                        <span className="w-1 h-8 sm:h-10 bg-gradient-to-b from-green-500 to-amber-500 rounded-full"></span>
+                <div className="mb-10">
+                    <h1 className="text-3xl font-bold text-black flex items-center gap-3">
+                        <span className="w-1 h-10 bg-green-600 rounded-full"></span>
                         My Bookings
                     </h1>
 
-                    <p className="text-gray-500 mt-2 text-sm sm:text-base">
+                    <p className="text-gray-600 mt-2">
                         You have{" "}
                         <span className="font-bold text-green-600">
                             {bookings.length}
                         </span>{" "}
-                        {bookings.length === 1 ? "booking" : "bookings"} in total
+                        bookings in total
                     </p>
                 </div>
 
                 {/* Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
                     {bookings.map((booking) => (
                         <div
                             key={booking._id}
-                            className="group bg-white rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+                            className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition overflow-hidden"
                         >
-                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 p-4 sm:p-5">
+
+                            <div className="flex flex-col sm:flex-row gap-5 p-5">
 
                                 {/* Image */}
-                                <div className="relative w-full sm:w-48 lg:w-56 h-48 sm:h-40 lg:h-48 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+                                <div className="relative w-full sm:w-52 h-44 rounded-xl overflow-hidden bg-gray-100">
                                     <Image
                                         src={booking.carImage}
                                         alt={booking.carName}
                                         fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                                        sizes="(max-width: 640px) 100vw, 224px"
+                                        className="object-cover"
                                     />
                                 </div>
 
-                                {/* Details */}
+                                {/* Content */}
                                 <div className="flex-1 space-y-3">
 
-                                    <div>
-                                        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-1 line-clamp-1">
-                                            {booking.carName}
-                                        </h1>
+                                    <h2 className="text-xl font-bold text-black">
+                                        {booking.carName}
+                                    </h2>
 
-                                        <div className="flex items-center gap-2 text-sm text-gray-500">
-                                            <FaIdCard className="text-gray-400 text-xs" />
-                                            <p className="font-mono text-xs">
-                                                ID: {booking._id}
-                                            </p>
-                                        </div>
+                                    <p className="text-xs text-gray-500 font-mono flex items-center gap-2">
+                                        <FaIdCard />
+                                        {booking._id}
+                                    </p>
+
+                                    {/* Price */}
+                                    <div className="flex justify-between border-b border-gray-100 pb-2">
+                                        <span className="text-gray-600">Total Price</span>
+                                        <span className="text-xl font-bold text-green-600">
+                                            ${booking.rentalPrice}
+                                        </span>
                                     </div>
 
-                                    <div className="space-y-2">
+                                    {/* Dates */}
+                                    <div className="space-y-2 text-sm">
 
-                                        {/* Price */}
-                                        <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-                                            <span className="text-gray-600 font-medium">
-                                                Total Price:
-                                            </span>
-
-                                            <p className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-amber-600">
-                                                ${booking.rentalPrice}
-                                            </p>
-                                        </div>
-
-                                        {/* Departure Date */}
                                         {booking.departureDate && (
-                                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                                                <FaCalendarAlt className="text-green-500" />
+                                            <div className="flex items-center gap-2 text-gray-700">
+                                                <FaCalendarAlt className="text-green-600" />
                                                 <span>
                                                     Departure:{" "}
                                                     {new Intl.DateTimeFormat("en-US", {
@@ -266,10 +259,9 @@ const MyBookingsPage = async () => {
                                             </div>
                                         )}
 
-                                        {/* Dropping Date */}
                                         {booking.droppingDate && (
-                                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                                                <FaCalendarAlt className="text-red-500" />
+                                            <div className="flex items-center gap-2 text-gray-700">
+                                                <FaCalendarAlt className="text-orange-500" />
                                                 <span>
                                                     Dropping:{" "}
                                                     {new Intl.DateTimeFormat("en-US", {
@@ -281,15 +273,6 @@ const MyBookingsPage = async () => {
                                             </div>
                                         )}
 
-                                        {/* Optional rental days */}
-                                        {booking.rentalDays && (
-                                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                                                <FaCalendarAlt className="text-amber-500" />
-                                                <span>
-                                                    {booking.rentalDays} days rental
-                                                </span>
-                                            </div>
-                                        )}
                                     </div>
 
                                     {/* Cancel */}
@@ -309,4 +292,3 @@ const MyBookingsPage = async () => {
 };
 
 export default MyBookingsPage;
-
