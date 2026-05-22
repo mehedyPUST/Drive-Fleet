@@ -74,7 +74,6 @@
 
 // export default Banner;
 
-
 'use client'
 
 import React from 'react';
@@ -84,37 +83,34 @@ import { FaArrowRight } from 'react-icons/fa';
 
 const Banner = () => {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800">
+        <section className="relative overflow-hidden bg-white dark:bg-gray-950 border-b border-gray-100 dark:border-gray-800">
 
-            {/* Glow Blobs */}
-            <div className="absolute -top-32 -right-32 w-[28rem] h-[28rem] bg-green-400/20 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-32 -left-32 w-[28rem] h-[28rem] bg-amber-400/20 rounded-full blur-3xl"></div>
+            {/* Soft background shapes (solid subtle) */}
+            <div className="absolute -top-32 -right-32 w-[28rem] h-[28rem] bg-gray-100 dark:bg-gray-900 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-32 -left-32 w-[28rem] h-[28rem] bg-gray-100 dark:bg-gray-900 rounded-full blur-2xl"></div>
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
 
-                <div className="text-center max-w-3xl mx-auto space-y-8">
+                <div className="text-center max-w-3xl mx-auto space-y-7">
 
                     {/* Tag */}
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-100/70 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm font-medium shadow-sm">
-                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 text-sm font-medium border border-gray-200 dark:border-gray-800">
+                        <span className="w-2 h-2 rounded-full bg-green-600"></span>
                         Welcome to DriveFleet
                     </div>
 
                     {/* Title */}
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
-                        <span className="text-gray-900 dark:text-white">
-                            Your Journey Starts
-                        </span>
-                        <br />
-                        <span className="bg-gradient-to-r from-green-500 via-emerald-500 to-amber-500 bg-clip-text text-transparent">
-                            Here
-                        </span>
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+                        Your Journey Starts Here
                     </h1>
+
+                    {/* Subtitle highlight line */}
+                    <div className="w-20 h-1 bg-gray-900 dark:bg-white mx-auto rounded-full"></div>
 
                     {/* Description */}
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">
-                        Discover the perfect ride for every adventure. From luxury sedans to powerful SUVs,
-                        DriveFleet offers quality cars with flexible rental options.
+                        Discover reliable cars for every trip. From economy to premium vehicles,
+                        DriveFleet gives you flexible rental options with trusted service.
                     </p>
 
                     {/* CTA */}
@@ -122,7 +118,7 @@ const Banner = () => {
                         <Link href="/explore-cars">
                             <Button
                                 size="lg"
-                                className="group relative overflow-hidden bg-gradient-to-r from-green-500 to-amber-500 text-white font-semibold px-10 py-6 text-lg rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.03]"
+                                className="group bg-gray-900 hover:bg-black text-white font-semibold px-10 py-6 text-lg rounded-xl shadow-sm hover:shadow-md transition-all duration-300"
                                 endContent={
                                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                                 }
@@ -132,21 +128,21 @@ const Banner = () => {
                         </Link>
                     </div>
 
-                    {/* Info */}
-                    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-10 text-sm text-gray-500 dark:text-gray-400">
+                    {/* Info chips */}
+                    <div className="flex flex-wrap justify-center gap-3 sm:gap-5 pt-10 text-sm text-gray-600 dark:text-gray-400">
 
-                        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 dark:bg-gray-800/40 shadow-sm">
-                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+                            <span className="w-2 h-2 bg-green-600 rounded-full"></span>
                             No hidden fees
                         </div>
 
-                        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 dark:bg-gray-800/40 shadow-sm">
+                        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
                             <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
                             Free cancellation
                         </div>
 
-                        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 dark:bg-gray-800/40 shadow-sm">
-                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+                            <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
                             24/7 support
                         </div>
 
