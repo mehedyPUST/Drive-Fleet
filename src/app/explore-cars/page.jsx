@@ -2,7 +2,7 @@ import CarCard from '@/components/CarCard';
 import React from 'react';
 
 const ExploreCarsPage = async () => {
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
         cache: 'no-store'
     })
