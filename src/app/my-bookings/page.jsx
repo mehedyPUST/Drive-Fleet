@@ -107,9 +107,9 @@ const MyBookingsPage = async () => {
 
                                     {/* Price */}
                                     <div className="flex justify-between border-b border-gray-100 pb-2">
-                                        <span className="text-gray-600">Total Price</span>
+                                        <span className="text-gray-600">Rental Price:</span>
                                         <span className="text-xl font-bold text-green-600">
-                                            ${booking.rentalPrice}
+                                            ${booking.rentalPrice} <span className="text-gray-400 text-sm">/day</span>
                                         </span>
                                     </div>
 
@@ -120,7 +120,7 @@ const MyBookingsPage = async () => {
                                             <div className="flex items-center gap-2 text-gray-700">
                                                 <FaCalendarAlt className="text-green-600" />
                                                 <span>
-                                                    Departure:{" "}
+                                                    Booked For:{" "}
                                                     {new Intl.DateTimeFormat("en-US", {
                                                         year: "numeric",
                                                         month: "long",
@@ -134,7 +134,7 @@ const MyBookingsPage = async () => {
                                             <div className="flex items-center gap-2 text-gray-700">
                                                 <FaCalendarAlt className="text-orange-500" />
                                                 <span>
-                                                    Dropping:{" "}
+                                                    To:{" "}
                                                     {new Intl.DateTimeFormat("en-US", {
                                                         year: "numeric",
                                                         month: "long",
