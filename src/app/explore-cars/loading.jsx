@@ -19,8 +19,8 @@ export default function Loading() {
                         Loading Cars
                     </h2>
 
-                    <p className="text-sm text-gray-500 mt-1">
-                        Please wait to see the exciting cars...
+                    <p className="text-sm font-medium text-gray-500 mt-1 italic">
+                        Please wait — something exciting is coming...
                     </p>
                 </div>
 
