@@ -23,8 +23,8 @@ export function DeleteAlert({ car }) {
 
     return (
         <AlertDialog>
-             <AlertDialog.Trigger className="group flex items-center gap-3 rounded-2xl bg-surface p-4 shadow-xs select-none hover:bg-surface-secondary">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-danger-soft text-danger-soft-foreground">
+             <AlertDialog.Trigger className="group flex items-center gap-2 rounded-xl bg-surface p-1 shadow-xs select-none hover:bg-surface-secondary">
+                <div className="flex size-6 shrink-0 items-center justify-center rounded-xl bg-danger-soft text-danger-soft-foreground">
                     <TrashBin />
                 </div>
                 <div className="flex flex-1 flex-col gap-0.5">
