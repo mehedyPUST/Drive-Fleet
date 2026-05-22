@@ -55,7 +55,7 @@ export default function SignUpPage() {
             await authClient.signOut();
             toast.dismiss(loadingToast);
 
-            toast.success(" Account created successfully! Welcome to SunCart.");
+            toast.success(" Account created successfully! Login to Enjoy Drive-Fleet");
 
             // small delay for better UX
             setTimeout(() => {
