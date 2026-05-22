@@ -2,7 +2,8 @@
 'use client'
 import { useState } from 'react';
 import { authClient } from '@/lib/auth-client';
-import { Button, Card, FieldError, Label, ListBox, Select, TextArea, TextField } from '@heroui/react';
+import { Button, Card, FieldError, Label, ListBox, Select, TextArea, TextField,DateField } from '@heroui/react';
+
 import toast from 'react-hot-toast';
 
 const BookingActionCard = ({ car }) => {
@@ -31,6 +32,7 @@ const BookingActionCard = ({ car }) => {
             rentalPrice: car.dailyRentPrice,
             needDriver,
             specialNote,
+            departureDate: new Date(departureDate)
         };
 
 
@@ -80,7 +82,14 @@ const BookingActionCard = ({ car }) => {
                     </Select.Popover>
                 </Select>
 
-
+ <DateField onChange={setDepartureDate} className="w-[256px]" name="date">
+        <Label>Departure Date</Label>
+        <DateField.Group>
+          <DateField.Input>
+            {(segment) => <DateField.Segment segment={segment} />}
+          </DateField.Input>
+        </DateField.Group>
+      </DateField>
                
 
           
