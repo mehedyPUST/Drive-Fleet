@@ -16,7 +16,7 @@
 //     const { token } = await auth.api.getToken({
 //         headers: await headers(),
 //     });
-    
+
 //     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars/user/${user.id}`, {
 //         headers: {
 //             authorization: `Bearer ${token}`
@@ -60,7 +60,7 @@
 //                                 You have added <span className="font-bold text-green-600">{userAddedCars.length}</span> {userAddedCars.length === 1 ? 'car' : 'cars'} to your fleet
 //                             </p>
 //                         </div>
-                        
+
 //                         {/* Add New Car Button */}
 //                         <Link 
 //                             href="/add-car" 
@@ -114,6 +114,7 @@ const MyAddedCarsPage = async () => {
         headers: await headers(),
     });
 
+    await new Promise(resolve => setTimeout(resolve, 2000));
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars/user/${user.id}`, {
         headers: {
             authorization: `Bearer ${token}`
