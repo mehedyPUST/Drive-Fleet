@@ -1,21 +1,31 @@
-const Loading = () => {
+export default function Loading() {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-5">
 
                 {/* Spinner */}
-                <div className="w-14 h-14 border-4 border-gray-200 border-t-green-600 rounded-full animate-spin"></div>
+                <div className="relative">
+
+                    <div className="w-16 h-16 border-4 border-gray-200 rounded-full"></div>
+
+                    <div className="absolute top-0 left-0 w-16 h-16 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+
+                </div>
 
                 {/* Text */}
-                <p className="text-gray-600 text-sm font-medium">
-                    Loading Cars...
-                </p>
+                <div className="text-center">
+                    <h2 className="text-lg font-semibold text-black">
+                        Loading Cars
+                    </h2>
+
+                    <p className="text-sm text-gray-500 mt-1">
+                        Please wait to see the exciting cars...
+                    </p>
+                </div>
 
             </div>
 
         </div>
     );
-};
-
-export default Loading;
+}
