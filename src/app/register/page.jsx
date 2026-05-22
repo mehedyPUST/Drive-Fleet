@@ -52,7 +52,7 @@ export default function SignUpPage() {
                 }
                 return;
             }
-
+            await authClient.signOut();
             toast.dismiss(loadingToast);
 
             toast.success(" Account created successfully! Welcome to SunCart.");
