@@ -103,7 +103,7 @@
 //                                                 <span>{booking.rentalDays} days rental</span>
 //                                             </div>
 //                                         )}
-                                        
+
 //                                         {booking.pickupDate && (
 //                                             <div className="flex items-center gap-2 text-sm text-gray-600">
 //                                                 <FaCalendarAlt className="text-green-500" />
@@ -146,7 +146,7 @@ const MyBookingsPage = async () => {
     });
 
     const user = session?.user;
-
+    await new Promise(resolve => setTimeout(resolve, 2000));
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user.id}`,
         {

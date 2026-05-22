@@ -2,11 +2,12 @@ import CarCard from '@/components/CarCard';
 import React from 'react';
 
 const ExploreCarsPage = async () => {
-     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
-        cache: 'no-store',  
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
+        cache: 'no-store',
         // next: { revalidate: 0 } 
     })
-    
+
     // const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`)
     const cars = await res.json()
 
