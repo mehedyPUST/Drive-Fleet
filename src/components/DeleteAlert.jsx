@@ -23,7 +23,7 @@ export function DeleteAlert({ car }) {
 
     return (
         <AlertDialog>
-            {/* <AlertDialog.Trigger className="group flex items-center gap-3 rounded-2xl bg-surface p-4 shadow-xs select-none hover:bg-surface-secondary">
+             <AlertDialog.Trigger className="group flex items-center gap-3 rounded-2xl bg-surface p-4 shadow-xs select-none hover:bg-surface-secondary">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-danger-soft text-danger-soft-foreground">
                     <TrashBin />
                 </div>
@@ -31,12 +31,9 @@ export function DeleteAlert({ car }) {
                     <p className="text-sm font-semibold">Delete Item</p>
                     {/* <p className="text-xs text-muted">Permanently remove {carName}</p> */}
                 </div>
-            </AlertDialog.Trigger> */}
+            </AlertDialog.Trigger>
 
-<AlertDialog.Trigger className="group flex items-center gap-2 rounded-xl bg-red-50 hover:bg-red-100 px-4 py-2 transition-all">
-    <TrashBin className="size-4 text-red-600" />
-    <span className="text-sm font-medium text-red-600">Delete</span>
-</AlertDialog.Trigger>
+
 
             <AlertDialog.Backdrop>
                 <AlertDialog.Container>
