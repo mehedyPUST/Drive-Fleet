@@ -9,7 +9,7 @@ const Loading = () => {
 
                 {/* Text */}
                 <p className="text-gray-600 text-sm font-medium">
-                    Loading cars...
+                    Loading Cars...
                 </p>
 
             </div>
