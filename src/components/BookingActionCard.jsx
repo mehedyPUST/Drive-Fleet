@@ -12,6 +12,7 @@ const BookingActionCard = ({ car }) => {
 
     const [needDriver, setNeedDriver] = useState('');
     const [specialNote, setSpecialNote] = useState('');
+     const [bookingDate, setBookingDate] = useState(null);
 
     const bookingHandler = async () => {
         if (!user) {
@@ -29,7 +30,8 @@ const BookingActionCard = ({ car }) => {
             imageUrl: car.imageUrl,
             rentalPrice: car.dailyRentPrice,
             needDriver,
-            specialNote
+            specialNote,
+            bookingDate: new Date(bookingDate)
         };
 
 
@@ -92,6 +94,15 @@ const BookingActionCard = ({ car }) => {
                         <FieldError />
                     </TextField>
                 </div>
+
+                <DateField onChange={setBookingDate} className="w-[256px]" name="date">
+        <Label>Booking Date</Label>
+        <DateField.Group>
+          <DateField.Input>
+            {(segment) => <DateField.Segment segment={segment} />}
+          </DateField.Input>
+        </DateField.Group>
+      </DateField>
 
 
                 <Button
